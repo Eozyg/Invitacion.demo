@@ -1,0 +1,183 @@
+<section class="section rsvp-section">
+    <div class="container">
+        <h2 class="section-title">Confirmación de Asistencia</h2>
+        <p class="rsvp-description">Esperamos que puedas acompañarnos en este día tan especial. Por favor, confirma tu asistencia antes del 15 de agosto de 2025.</p>
+        
+        <form class="rsvp-form" id="rsvp-form">
+            <div class="form-group">
+                <label for="name">Nombre y Apellido</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="tel" id="phone" name="phone" required>
+            </div>
+            
+            <div class="form-group">
+                <label>¿Asistirás?</label>
+                <div class="radio-group">
+                    <label class="radio-label">
+                        <input type="radio" name="attendance" value="yes" required>
+                        <span>Sí, asistiré</span>
+                    </label>
+                    <label class="radio-label">
+                        <input type="radio" name="attendance" value="no">
+                        <span>No podré asistir</span>
+                    </label>
+                </div>
+            </div>
+            
+            <div class="form-group" id="guests-group">
+                <label for="guests">Número de invitados (incluyéndote)</label>
+                <select id="guests" name="guests">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Mensaje para los novios (opcional)</label>
+                <textarea id="message" name="message" rows="3"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary rsvp-submit">Confirmar Asistencia</button>
+        </form>
+        
+        <div class="rsvp-confirmation" id="rsvp-confirmation">
+            <i class="fas fa-check-circle"></i>
+            <h3>¡Gracias por confirmar!</h3>
+            <p>Hemos recibido tu confirmación. ¡Nos vemos en la boda!</p>
+        </div>
+    </div>
+</section>
+
+<style>
+    .rsvp-section {
+        background-color: var(--color-rsvp);
+        padding: var(--spacing-xl) 0;
+    }
+    
+    .rsvp-description {
+        text-align: center;
+        max-width: 600px;
+        margin: 0 auto var(--spacing-lg);
+    }
+    
+    .rsvp-form {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: var(--color-background);
+        padding: var(--spacing-lg);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .form-group {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .form-group label {
+        display: block;
+        margin-bottom: var(--spacing-xs);
+        font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        width: 100%;
+        padding: var(--spacing-sm);
+        border: 1px solid #ddd;
+        border-radius: var(--border-radius-sm);
+        font-family: var(--font-family-primary);
+        font-size: var(--font-size-md);
+    }
+    
+    .form-group textarea {
+        resize: vertical;
+    }
+    
+    .radio-group {
+        display: flex;
+        gap: var(--spacing-md);
+    }
+    
+    .radio-label {
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+    
+    .radio-label input {
+        margin-right: var(--spacing-xs);
+        width: auto;
+    }
+    
+    .rsvp-submit {
+        width: 100%;
+        margin-top: var(--spacing-md);
+        padding: var(--spacing-md);
+    }
+    
+    .rsvp-confirmation {
+        display: none;
+        text-align: center;
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: var(--color-background);
+        padding: var(--spacing-lg);
+        border-radius: var(--border-radius-lg);
+        box-shadow: var(--shadow-md);
+    }
+    
+    .rsvp-confirmation i {
+        font-size: var(--font-size-3xl);
+        color: var(--color-primary);
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .rsvp-confirmation h3 {
+        margin-bottom: var(--spacing-sm);
+    }
+</style>
+
+<script>
+    // Mostrar/ocultar el campo de número de invitados según la respuesta
+    document.addEventListener('DOMContentLoaded', () => {
+        const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
+        const guestsGroup = document.getElementById('guests-group');
+        
+        attendanceRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                if (e.target.value === 'yes') {
+                    guestsGroup.style.display = 'block';
+                } else {
+                    guestsGroup.style.display = 'none';
+                }
+            });
+        });
+        
+        // Manejar el envío del formulario
+        const rsvpForm = document.getElementById('rsvp-form');
+        const rsvpConfirmation = document.getElementById('rsvp-confirmation');
+        
+        if (rsvpForm) {
+            rsvpForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                
+                // Aquí se podría agregar código para enviar los datos a un servidor
+                // Por ahora, solo mostraremos el mensaje de confirmación
+                rsvpForm.style.display = 'none';
+                rsvpConfirmation.style.display = 'block';
+            });
+        }
+    });
+</script>

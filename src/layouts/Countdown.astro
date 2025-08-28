@@ -1,0 +1,185 @@
+<section class="section countdown-section">
+	
+	<div class="container">
+		<h2 class="section-title">Nos casamos en...</h2>
+		<div id="countdown" class="countdown-container">
+			<div class="countdown-item">
+				<span id="days" class="countdown-number">00</span>
+				<span class="countdown-label">Días</span>
+			</div>
+			<div class="countdown-item">
+				<span id="hours" class="countdown-number">00</span>
+				<span class="countdown-label">Horas</span>
+			</div>
+			<div class="countdown-item">
+				<span id="minutes" class="countdown-number">00</span>
+				<span class="countdown-label">Minutos</span>
+			</div>
+			<div class="countdown-item">
+				<span id="seconds" class="countdown-number">00</span>
+				<span class="countdown-label">Segundos</span>
+			</div>
+		</div>
+	</div>
+</section>
+
+<style>
+	.countdown-section {
+		background-color: var(--color-countdown);
+		color: var(--color-text-dark);
+		text-align: center;
+		padding: var(--spacing-xl) 0;
+		background-color: #FEFE95;
+	}
+
+	.countdown-container {
+		display: flex;
+		justify-content: center;
+		gap: var(--spacing-lg);
+		margin: var(--spacing-lg) 0;
+		flex-wrap: wrap;
+	}
+
+	.countdown-item {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin: var(--spacing-sm);
+		transition: transform 0.3s ease;
+		background-color: var(--color-background);
+		border-radius: var(--border-radius-lg);
+		padding: var(--spacing-md);
+		min-width: 120px;
+		box-shadow: var(--shadow-md);
+	}
+
+	.countdown-item:hover {
+		transform: translateY(-5px);
+		box-shadow: var(--shadow-lg);
+	}
+
+	.countdown-number {
+		font-size: var(--font-size-3xl);
+		font-weight: bold;
+		color: var(--color-text-dark);
+		padding: var(--spacing-sm) var(--spacing-md);
+		min-width: 80px;
+		text-align: center;
+	}
+
+	.countdown-label {
+		font-size: var(--font-size-md);
+		margin-top: var(--spacing-sm);
+		font-weight: 600;
+		color: var(--color-text-dark);
+	}
+
+	@media (max-width: 768px) {
+		.countdown-container {
+			gap: var(--spacing-md);
+		}
+
+		.countdown-item {
+			min-width: 100px;
+			padding: var(--spacing-sm);
+		}
+
+		.countdown-number {
+			font-size: var(--font-size-2xl);
+			min-width: 60px;
+		}
+
+		.countdown-label {
+			font-size: var(--font-size-sm);
+		}
+	}
+</style>
+
+<script>
+	// Función para calcular y actualizar la cuenta regresiva
+	function updateCountdown() {
+		// Fecha del evento (6 de septiembre de 2025)
+		const eventDate = new Date('September 6, 2025 13:00:00').getTime();
+		// Fecha actual
+		const now = new Date().getTime();
+		// Diferencia de tiempo
+		const timeLeft = eventDate - now;
+
+		// Cálculos para días, horas, minutos y segundos
+		const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+		const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+		const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+		const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+		// Actualizar los elementos HTML con animación
+		updateElementWithAnimation('days', days);
+		updateElementWithAnimation('hours', hours);
+		updateElementWithAnimation('minutes', minutes);
+		updateElementWithAnimation('seconds', seconds);
+
+		// Si la fecha ya pasó
+		if (timeLeft < 0) {
+			document.getElementById('days').textContent = '00';
+			document.getElementById('hours').textContent = '00';
+			document.getElementById('minutes').textContent = '00';
+			document.getElementById('seconds').textContent = '00';
+			clearInterval(countdownInterval);
+		}
+	}
+
+	// Función para actualizar un elemento con animación
+	function updateElementWithAnimation(id, value) {
+		const element = document.getElementById(id);
+		const currentValue = element.textContent;
+		const newValue = value.toString().padStart(2, '0');
+		
+		if (currentValue !== newValue) {
+			element.classList.add('countdown-flip');
+			setTimeout(() => {
+				element.textContent = newValue;
+				element.classList.remove('countdown-flip');
+			}, 300);
+		}
+	}
+
+	// Actualizar la cuenta regresiva cada segundo
+	const countdownInterval = setInterval(updateCountdown, 1000);
+
+	// Inicializar la cuenta regresiva inmediatamente
+	updateCountdown();
+
+	// Añadir animación al cargar la página
+	document.addEventListener('DOMContentLoaded', () => {
+		const countdownItems = document.querySelectorAll('.countdown-item');
+		countdownItems.forEach((item, index) => {
+			setTimeout(() => {
+				item.classList.add('animate-in');
+			}, index * 200);
+		});
+	});
+</script>
+
+<style>
+	@keyframes flipIn {
+		0% { transform: rotateX(90deg); opacity: 0; }
+		100% { transform: rotateX(0deg); opacity: 1; }
+	}
+
+	@keyframes fadeInUp {
+		0% { transform: translateY(20px); opacity: 0; }
+		100% { transform: translateY(0); opacity: 1; }
+	}
+
+	.countdown-flip {
+		animation: flipIn 0.5s ease-out;
+	}
+
+	.countdown-item {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+
+	.animate-in {
+		animation: fadeInUp 0.8s forwards;
+	}
+</style>

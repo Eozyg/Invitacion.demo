@@ -1,0 +1,73 @@
+<div class="banner">
+    <div class="banner-overlay">
+        <h1>Nuestra Boda</h1>
+        <h2>Lucía & Martín</h2>
+        <p class="date">06 · 09 · 2025</p>
+    </div>
+</div>
+
+<style>
+    .banner {
+        width: 100%;
+        height: 100vh;
+        background-image: url('/background.png');
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-light);
+        text-align: center;
+    }
+
+    .banner-overlay {
+        background-color: rgba(0, 0, 0, 0.4);
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding: var(--spacing-xl);
+    }
+
+    .banner h1 {
+        font-size: var(--font-size-4xl);
+        margin-bottom: var(--spacing-md);
+        font-weight: 300;
+        letter-spacing: 4px;
+        text-transform: uppercase;
+    }
+
+    .banner h2 {
+        font-size: var(--font-size-3xl);
+        margin-bottom: var(--spacing-lg);
+        font-weight: 600;
+    }
+
+    .date {
+        font-size: var(--font-size-xl);
+        letter-spacing: 2px;
+        border-top: 1px solid var(--color-text-light);
+        border-bottom: 1px solid var(--color-text-light);
+        padding: var(--spacing-sm) var(--spacing-lg);
+    }
+
+    @media (max-width: 768px) {
+        .banner {
+            height: 80vh;
+        }
+
+        .banner h1 {
+            font-size: var(--font-size-2xl);
+        }
+
+        .banner h2 {
+            font-size: var(--font-size-xl);
+        }
+
+        .date {
+            font-size: var(--font-size-lg);
+        }
+    }

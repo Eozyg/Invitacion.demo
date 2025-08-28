@@ -1,0 +1,111 @@
+<section class="section gallery-section">
+    <div class="container">
+        <h2 class="section-title">Nuestra Historia</h2>
+        <div class="gallery-grid">
+            <!-- Aquí se pueden agregar imágenes reales más adelante -->
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background-color: var(--color-primary)">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background-color: var(--color-secondary)">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background-color: var(--color-accent)">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background-color: var(--color-ceremony)">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background-color: var(--color-party)">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+            <div class="gallery-item">
+                <div class="gallery-placeholder" style="background-color: var(--color-gallery)">
+                    <i class="fas fa-image"></i>
+                </div>
+            </div>
+        </div>
+        <div class="gallery-instagram">
+            <p>Síguenos en Instagram para ver más fotos</p>
+            <a href="https://www.instagram.com/" target="_blank" class="instagram-link">
+                <i class="fab fa-instagram"></i> @luciamartin2025
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    .gallery-section {
+        background-color: var(--color-gallery);
+        padding: var(--spacing-xl) 0;
+    }
+
+    .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-lg);
+    }
+
+    .gallery-item {
+        border-radius: var(--border-radius-md);
+        overflow: hidden;
+        box-shadow: var(--shadow-sm);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        aspect-ratio: 1 / 1;
+    }
+
+    .gallery-item:hover {
+        transform: scale(1.03);
+        box-shadow: var(--shadow-md);
+    }
+
+    .gallery-placeholder {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-light);
+        font-size: var(--font-size-2xl);
+    }
+
+    .gallery-instagram {
+        text-align: center;
+        margin-top: var(--spacing-xl);
+    }
+
+    .instagram-link {
+        display: inline-flex;
+        align-items: center;
+        color: var(--color-text-dark);
+        text-decoration: none;
+        font-weight: 600;
+        margin-top: var(--spacing-sm);
+        transition: color 0.3s ease;
+    }
+
+    .instagram-link:hover {
+        color: var(--color-primary);
+    }
+
+    .instagram-link i {
+        font-size: var(--font-size-lg);
+        margin-right: var(--spacing-sm);
+    }
+
+    @media (max-width: 768px) {
+        .gallery-grid {
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+        }
+    }
+</style>
