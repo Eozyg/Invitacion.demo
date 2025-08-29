@@ -1,5 +1,9 @@
 <section class="section rsvp-section">
     <div class="container">
+         <form action="https://formsubmit.co/ger.adrogue@gmail.com" method="POST">
+                    <input type="hidden" name="_next" value="http://localhost:4321/">
+                    <input type="hidden" name="_captcha" value="false">
+
         <h2 class="section-title">Confirmación de Asistencia</h2>
         <p class="rsvp-description">Esperamos que puedas acompañarnos en este día tan especial. Por favor, confirma tu asistencia antes del 15 de agosto de 2025.</p>
         
@@ -51,10 +55,12 @@
             <button type="submit" class="btn btn-primary rsvp-submit">Confirmar Asistencia</button>
         </form>
         
-        <div class="rsvp-confirmation" id="rsvp-confirmation">
+        <div class="rsvp-confirmation" id="rsvp-confirmation hidden">
             <i class="fas fa-check-circle"></i>
             <h3>¡Gracias por confirmar!</h3>
             <p>Hemos recibido tu confirmación. ¡Nos vemos en la boda!</p>
+
+        </form>
         </div>
     </div>
 </section>
@@ -147,9 +153,16 @@
     .rsvp-confirmation h3 {
         margin-bottom: var(--spacing-sm);
     }
+
+    form {
+        border-radius: 50%;
+
+    }
 </style>
 
 <script>
+import { formDataToObject } from "astro:actions";
+
     // Mostrar/ocultar el campo de número de invitados según la respuesta
     document.addEventListener('DOMContentLoaded', () => {
         const attendanceRadios = document.querySelectorAll('input[name="attendance"]');
@@ -170,13 +183,27 @@
         const rsvpConfirmation = document.getElementById('rsvp-confirmation');
         
         if (rsvpForm) {
-            rsvpForm.addEventListener('submit', (e) => {
+            rsvpForm.addEventListener('submit', async function (e)  {
                 e.preventDefault();
+                const formData = new FormData(rsvpForm);
+
+                try{
+                    await fetch(form.action, {
+                        method: form.method,
+                        body: formData,
+                    });
+                         rsvpForm.style.display = 'none';
+                        rsvpConfirmation.style.display = 'block';
+
+                    alert('Formulario enviado con éxito');
+                    form.reset();
+                }catch (error) {
+                    alert('Error al enviar el formulario');
+                }
                 
                 // Aquí se podría agregar código para enviar los datos a un servidor
                 // Por ahora, solo mostraremos el mensaje de confirmación
-                rsvpForm.style.display = 'none';
-                rsvpConfirmation.style.display = 'block';
+           
             });
         }
     });

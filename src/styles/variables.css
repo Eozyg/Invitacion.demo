@@ -1,7 +1,7 @@
 :root {
   /* Colores principales - tonos pastel */
-  --color-primary: #74a487; /* Rosa pastel */
-  --color-secondary: #7c7349; /* Azul pastel */
+  --color-primary: #74a487; /* Verde pastel */
+  --color-secondary: #7c7349; /* Ocre pastel */
   --color-accent: #fff3cd; /* Amarillo pastel */
   --color-background: #f8f9fa; /* Fondo claro */
   
@@ -10,7 +10,7 @@
   --color-text-light: #f8f9fa;
   
   /* Colores para secciones específicas */
-  --color-countdown: #deae34; /* Verde pastel */
+  --color-countdown: #deae34; /* Amarillo pastel */
   --color-ceremony: #e2e3e5; /* Gris pastel */
   --color-party: #d6d8db; /* Gris azulado pastel */
   --color-gallery: #f5f5f5; /* Gris muy claro */
