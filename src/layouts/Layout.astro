@@ -4,7 +4,6 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
 		<title>Nuestra Boda | Invitación</title>
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -71,7 +70,28 @@
 
 <style is:global>
 	@import '../styles/variables.css';
+	* {
+  	scrollbar-width: thin;              /* puede ser auto, thin o none */
+  	scrollbar-color: var(--color-primary) transparent;      /* pulgar | fondo */
+}
 
+	
+::-webkit-scrollbar {
+    width: 8px;               /* scrollbar width */
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;      /* track background color */
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-primary);    /* thumb color matching primary theme */
+    border-radius: 4px;       /* rounded corners */
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary-dark, #555);    /* darker shade on hover */
+}
 	html,
 	body {
 		margin: 0;
