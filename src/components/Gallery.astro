@@ -4,7 +4,7 @@
         <div class="gallery-grid">
             <!-- Aquí se pueden agregar imágenes reales más adelante -->
             <div class="gallery-item">
-                <div class="gallery-placeholder" style="background-color: var(--color-primary)">
+                <div class="gallery-placeholder" style="background-color: var(--color-primary); color: white;">
                     <i class="fas fa-image"></i>
                 </div>
             </div>
@@ -77,6 +77,11 @@
         justify-content: center;
         color: var(--color-text-light);
         font-size: var(--font-size-2xl);
+        transition: color 0.3s ease;
+    }
+
+    .gallery-placeholder:hover {
+        color: #333;
     }
 
     .gallery-instagram {
