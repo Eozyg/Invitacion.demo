@@ -1,8 +1,19 @@
+---
+// No necesitamos imports especiales para archivos en public
+---
+
 <div class="banner">
+    <!-- Video de fondo con fallback robusto -->
+    <video class="banner-video" autoplay muted loop playsinline preload="none" poster="/background.png" onloadstart="this.style.display='block'" onerror="this.style.display='none'">
+        <source src="./backgroundvideo.mp4" type="video/mp4">
+        <source src="/backgroundvideo.mp4" type="video/mp4">
+    </video>
+    <!-- Imagen de fallback como fondo CSS -->
+    <div class="banner-fallback"></div>
     <div class="banner-overlay">
-        <h1>Nuestra Boda</h1>
-        <h2>Lucía & Martín</h2>
-        <p class="date">06 · 09 · 2025</p>
+        <h1 class="banner-title">Nuestra Boda</h1>
+        <h2 class="banner-names">Lucía & Martín</h2>
+        <p class="date banner-date">06 · 09 · 2025</p>
     </div>
 </div>
 
@@ -10,15 +21,49 @@
     .banner {
         width: 100%;
         height: 100vh;
-        background-image: url('/background.png');
-        background-size: cover;
-        background-position: center;
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
         color: var(--color-text-light);
         text-align: center;
+        overflow: hidden;
+    }
+
+    .banner-video {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        z-index: 1;
+        transform: translateX(-50%) translateY(-50%);
+        object-fit: cover;
+        display: none; /* Oculto por defecto, se muestra cuando carga */
+    }
+
+    .banner-fallback {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: url('/background.png');
+        background-size: cover;
+        background-position: center;
+        z-index: 0;
+    }
+
+    /* Mostrar video cuando carga correctamente */
+    .banner-video[style*="display: block"] {
+        z-index: 1;
+    }
+
+    /* Asegurar que el fallback siempre esté visible */
+    .banner-fallback {
+        display: block !important;
     }
 
     .banner-overlay {
@@ -30,28 +75,60 @@
         justify-content: center;
         align-items: center;
         padding: var(--spacing-xl);
+        position: relative;
+        z-index: 2;
     }
 
-    .banner h1 {
+    .banner-title {
         font-size: var(--font-size-4xl);
         margin-bottom: var(--spacing-md);
         font-weight: 300;
         letter-spacing: 4px;
         text-transform: uppercase;
+        opacity: 0;
+        transform: translateY(-50px);
+        animation: slideInFromTop 1.2s ease-out 0.5s forwards;
     }
 
-    .banner h2 {
+    .banner-names {
         font-size: var(--font-size-3xl);
         margin-bottom: var(--spacing-lg);
         font-weight: 600;
+        opacity: 0;
+        transform: translateX(-100px);
+        animation: slideInFromLeft 1.2s ease-out 1.2s forwards;
     }
 
-    .date {
+    .banner-date {
         font-size: var(--font-size-xl);
         letter-spacing: 2px;
         border-top: 1px solid var(--color-text-light);
         border-bottom: 1px solid var(--color-text-light);
         padding: var(--spacing-sm) var(--spacing-lg);
+        opacity: 0;
+        transform: translateX(100px);
+        animation: slideInFromRight 1.2s ease-out 1.8s forwards;
+    }
+
+    @keyframes slideInFromTop {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInFromLeft {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInFromRight {
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
     }
 
     @media (max-width: 768px) {
@@ -59,15 +136,39 @@
             height: 80vh;
         }
 
-        .banner h1 {
+        .banner-video {
+            /* En móviles, asegurar que el video cubra toda la pantalla */
+            min-width: 120%;
+            min-height: 120%;
+        }
+
+        .banner-title {
             font-size: var(--font-size-2xl);
         }
 
-        .banner h2 {
+        .banner-names {
             font-size: var(--font-size-xl);
         }
 
-        .date {
+        .banner-date {
             font-size: var(--font-size-lg);
+        }
+    }
+
+    /* Optimización para dispositivos con conexión lenta */
+    @media (prefers-reduced-motion: reduce) {
+        .banner-video {
+            animation-play-state: paused;
+        }
+    }
+
+    /* Ajustes para pantallas muy pequeñas */
+    @media (max-width: 480px) {
+        .banner {
+            height: 70vh;
+        }
+        
+        .banner-overlay {
+            padding: var(--spacing-md);
         }
     }

@@ -7,5 +7,13 @@ export default defineConfig({
   output: 'server',
   adapter: node({
     mode: 'standalone'
-  })
+  }),
+  vite: {
+    assetsInclude: ['**/*.mp4', '**/*.webm', '**/*.ogg'],
+    server: {
+      fs: {
+        allow: ['..', './public']
+      }
+    }
+  }
 });
