@@ -35,6 +35,10 @@ export async function POST({ request }) {
       auth: {
         user: process.env.EMAIL_USER, // tu email
         pass: process.env.EMAIL_PASS  // tu contraseña de aplicación
+      },
+      tls: {
+        // Ignorar la verificación de certificados (solución para el error de certificado autofirmado)
+        rejectUnauthorized: false
       }
     });
 
